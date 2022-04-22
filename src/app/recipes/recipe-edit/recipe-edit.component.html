@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button (click)="onCancel()" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label>
+                            Name
+                        </label>
+                        <input formControlName="name" type="text" id="name" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label>
+                            Image path
+                        </label>
+                        <input #imgPath formControlName="imagePath" type="text" id="imgpath" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <img [src]="imgPath.value" class="img-responsive">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label>
+                           Description
+                        </label>
+                        <textarea formControlName="description" type="text" id="description" rows="6" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row" formArrayName="ingradients" *ngFor="let ingradientCtrl of getControls(); let i=index">
+                        <div [formGroupName]="i">
+                            <div class="col-xs-8">
+                                <input type="text" formControlName="name" class="form-control">
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="number" formControlName="amount" class="form-control">
+                            </div>
+                            <div class="col-xs-2">
+                                <button class="btn btn-danger" (click)="deleteIngradient(i)">X</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button class="btn btn-primary" (click)="onAddIngradient()">
+                                    Add Ingradients
+                               </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
